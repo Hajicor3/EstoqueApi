@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: EstoqueApi
+  profiles:
+    active:
+    - "teste"
+server:
+  port: 8081
