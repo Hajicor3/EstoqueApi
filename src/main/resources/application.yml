@@ -1,6 +1,6 @@
 spring:
   application:
-    name: EstoqueApi
+    name: apiestoque
   profiles:
     active:
     - "teste"
