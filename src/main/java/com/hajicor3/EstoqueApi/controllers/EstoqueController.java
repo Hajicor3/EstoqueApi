@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hajicor3.EstoqueApi.entities.Estoque;
@@ -39,6 +40,14 @@ public class EstoqueController {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<EstoqueResponse> buscarEstoquePorId(@PathVariable Long id){
 		var estoque = estoqueService.buscarPorId(id);
+		
+		return ResponseEntity.ok().body(estoque);
+	}
+	
+	@GetMapping(params = "id")
+	public ResponseEntity<EstoqueResponse> encontrarPeloIdProduto(@RequestParam Long id) {
+		
+		var estoque = estoqueService.EstoquePorIdProduto(id);
 		
 		return ResponseEntity.ok().body(estoque);
 	}

@@ -49,4 +49,17 @@ public class EstoqueService {
 				.quantidade(estoque.getQuantidade())
 				.build();
 	}
+	
+	public EstoqueResponse EstoquePorIdProduto(Long id) {
+		var estoque = estoqueRepository.findByIdProduto(id);
+		return EstoqueResponse
+				.builder()
+				.id(estoque.getId())
+				.idProduto(estoque.getIdProduto())
+				.idFornecedor(estoque.getIdFornecedor())
+				.quantidade(estoque.getQuantidade())
+				.build();
+	}
 }
+
+
