@@ -43,14 +43,14 @@ public class EstoqueController {
 	}
 	
 	@GetMapping(params = "id")
-	public ResponseEntity<EstoqueResponse> encontrarPeloIdProduto(@RequestParam Long id) {
+	public ResponseEntity<EstoqueResponse> encontrarEstoquePeloIdProduto(@RequestParam Long id) {
 		var estoque = estoqueService.EstoquePorIdProduto(id);
 		return ResponseEntity.ok().body(estoque);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deletarEstoquePorIdProduto(@PathVariable("id") Long idProduto){
-		estoqueService.deletarPorIdProduto(idProduto);
+	public ResponseEntity<Void> deletarEstoquePorIdProduto(@PathVariable Long id){
+		estoqueService.deletarPorIdProduto(id);
 		return ResponseEntity.noContent().build();
 	}
 }

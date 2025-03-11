@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.hajicor3.EstoqueApi.entities.Movimentacao;
 import com.hajicor3.EstoqueApi.entities.dtos.MovimentacaoRequest;
 import com.hajicor3.EstoqueApi.services.MovimentacaoService;
 
@@ -21,10 +22,10 @@ public class MovimentacaoController {
 	private MovimentacaoService movimentacaoService;
 	
 	@PostMapping
-	public ResponseEntity<Void> salvarMovimentacao(@RequestBody MovimentacaoRequest movimentacaoRequest) {
+	public ResponseEntity<Movimentacao> salvarMovimentacao(@RequestBody MovimentacaoRequest movimentacaoRequest) {
 		
 		var movimentacao = movimentacaoService.salvar(movimentacaoRequest);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(movimentacao.getId()).toUri();
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).body(movimentacao);
 	}
 }
