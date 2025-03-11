@@ -1,6 +1,8 @@
 package com.hajicor3.EstoqueApi.services;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +61,19 @@ public class EstoqueService {
 				.idFornecedor(estoque.getIdFornecedor())
 				.quantidade(estoque.getQuantidade())
 				.build();
+	}
+	
+	public Long estoqueQuantidade(Long id) {
+		
+		return estoqueRepository.findByIdProduto(id).getQuantidade();
+	}
+	
+	public Map<Long, Long> listaDeQuantidadePorProduto(){
+		var estoque = estoqueRepository.findAll();
+		
+		return estoque.stream().collect(Collectors.toMap(
+				x -> x.getIdProduto(),
+				x -> x.getQuantidade()));
 	}
 	
 	public void deletarPorIdProduto(Long id) {

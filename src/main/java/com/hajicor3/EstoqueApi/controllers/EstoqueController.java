@@ -1,6 +1,7 @@
 package com.hajicor3.EstoqueApi.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +47,19 @@ public class EstoqueController {
 	public ResponseEntity<EstoqueResponse> encontrarEstoquePeloIdProduto(@RequestParam Long id) {
 		var estoque = estoqueService.EstoquePorIdProduto(id);
 		return ResponseEntity.ok().body(estoque);
+	}
+	
+	@GetMapping(value = "/qntd/produto/{id}")
+	public ResponseEntity<Long> quantidadeEmEstoquePorIdProduto(@PathVariable Long id){
+		
+		var quantidade = estoqueService.estoqueQuantidade(id);
+		return ResponseEntity.ok().body(quantidade);
+	}
+	
+	@GetMapping(value = "/qntd/produto/list")
+	public ResponseEntity<Map<Long,Long>> produtoQuantidadeLista(){
+		var lista = estoqueService.listaDeQuantidadePorProduto();
+		return ResponseEntity.ok().body(lista);
 	}
 	
 	@DeleteMapping(value = "/{id}")
