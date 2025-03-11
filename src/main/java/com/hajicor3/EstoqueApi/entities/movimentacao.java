@@ -1,6 +1,6 @@
 package com.hajicor3.EstoqueApi.entities;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,20 +21,20 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode
-public class movimentacao {
+public class Movimentacao {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
-	private LocalDate data;
+	@JsonFormat(shape = Shape.STRING, pattern = "dd-MM-yyyy'T'HH:mm:ss'Z'",timezone = "GMT")
+	private Instant data;
 	private Long idProduto;
 	private TipoDeMovimentacao tipoDeMovimentacao;
 	
-	public movimentacao(LocalDate data, Long idProduto, TipoDeMovimentacao tipoDeMovimentacao) {
-		this.data = LocalDate.now();
-		this.idProduto = idProduto;
-		this.tipoDeMovimentacao = tipoDeMovimentacao;
+	public Movimentacao(Long idProduto, TipoDeMovimentacao tipoDeMovimentacao) {
+		this.data = Instant.now();
+		setIdProduto(idProduto);
+		setTipoDeMovimentacao(tipoDeMovimentacao);;
 	}
 
 	public void setIdProduto(Long idProduto) {
@@ -48,7 +48,5 @@ public class movimentacao {
 		Objects.requireNonNull(tipoDeMovimentacao, "O tipo de movimentação não pode ser nulo!");
 		this.tipoDeMovimentacao = tipoDeMovimentacao;
 	}
-	
-	
 	
 }

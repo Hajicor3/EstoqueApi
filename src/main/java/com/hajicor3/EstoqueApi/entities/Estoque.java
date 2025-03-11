@@ -1,5 +1,7 @@
 package com.hajicor3.EstoqueApi.entities;
 
+import com.hajicor3.EstoqueApi.entities.enums.TipoDeMovimentacao;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Estoque {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long idProduto;
 	private Long idFornecedor;
@@ -47,10 +49,16 @@ public class Estoque {
 		this.idFornecedor = idFornecedor;
 	}
 	
-	public void setQuantidade(Long quantidade) {
+	public void setQuantidade(TipoDeMovimentacao movimentacao) {
 		
-		if(quantidade < 0 || quantidade == null) {
-			throw new IllegalArgumentException("A quantodade não pode ser nula ou negativa!");
+		if(movimentacao == TipoDeMovimentacao.ENTRADA) {
+			this.quantidade++;
+		}
+		else {
+			if(quantidade == 0) {
+				throw new IllegalArgumentException("A quantidade em estoque não pode ser menor que zero!");
+			}
+			this.quantidade--;
 		}
 	}
 }

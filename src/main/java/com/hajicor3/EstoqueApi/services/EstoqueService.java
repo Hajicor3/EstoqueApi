@@ -60,6 +60,13 @@ public class EstoqueService {
 				.quantidade(estoque.getQuantidade())
 				.build();
 	}
+	
+	public void deletarPorIdProduto(Long id) {
+		
+		var estoque = estoqueRepository.findByIdProduto(id);
+		
+		estoqueRepository.delete(estoque);
+	}
 }
 
 
