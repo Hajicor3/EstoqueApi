@@ -52,7 +52,7 @@ public class EstoqueService {
 				.build();
 	}
 	
-	public EstoqueResponse EstoquePorIdProduto(Long id) {
+	public EstoqueResponse estoquePorIdProduto(Long id) {
 		var estoque = estoqueRepository.findByIdProduto(id);
 		return EstoqueResponse
 				.builder()
@@ -63,6 +63,17 @@ public class EstoqueService {
 				.build();
 	}
 	
+	public List<EstoqueResponse> estoquesPorIdFornecedor(Long id) {
+		var estoque = estoqueRepository.findByIdFornecedor(id);
+		return estoque.stream().map(x -> EstoqueResponse
+				.builder()
+				.id(x.getId())
+				.idFornecedor(x.getIdFornecedor())
+				.idProduto(x.getIdProduto())
+				.quantidade(x.getQuantidade())
+				.build())
+				.toList();
+	}	
 	public Long estoqueQuantidade(Long id) {
 		
 		return estoqueRepository.findByIdProduto(id).getQuantidade();
@@ -81,6 +92,14 @@ public class EstoqueService {
 		var estoque = estoqueRepository.findByIdProduto(id);
 		
 		estoqueRepository.delete(estoque);
+	}
+	
+	public void deletarPorIdFornecedor(Long id) {
+		List<Estoque> estoques = estoqueRepository.findByIdFornecedor(id);
+		estoques.forEach(x -> x.setDeleted(true));
+		estoqueRepository.saveAll(estoques);
+		
+	
 	}
 }
 

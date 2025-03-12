@@ -1,5 +1,9 @@
 package com.hajicor3.EstoqueApi.entities;
 
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+
 import com.hajicor3.EstoqueApi.entities.enums.TipoDeMovimentacao;
 
 import jakarta.persistence.Entity;
@@ -16,6 +20,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor
+@FilterDef(name = "softDeleteFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
+@Filter(name = "softDeleteFilter", condition = "deleted = :isDeleted")
 public class Estoque {
 	
 	@Id
@@ -24,6 +30,7 @@ public class Estoque {
 	private Long idProduto;
 	private Long idFornecedor;
 	private Long quantidade;
+	private Boolean deleted = false;
 	
 	public Estoque(Long idProduto, Long idFornecedor) {
 		setIdProduto(idProduto);
@@ -60,5 +67,9 @@ public class Estoque {
 			}
 			this.quantidade--;
 		}
+	}
+	
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 }
