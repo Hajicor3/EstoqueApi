@@ -9,6 +9,10 @@ import com.hajicor3.EstoqueApi.entities.dtos.MovimentacaoRequest;
 import com.hajicor3.EstoqueApi.entities.enums.TipoDeMovimentacao;
 import com.hajicor3.EstoqueApi.repositories.EstoqueRepository;
 import com.hajicor3.EstoqueApi.repositories.MovimentacaoRepository;
+import com.hajicor3.EstoqueApi.services.exceptions.ResourceNotFoundException;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class MovimentacaoService {
@@ -18,8 +22,9 @@ public class MovimentacaoService {
 	@Autowired
 	private EstoqueRepository estoqueRepository;
 	
+	@Transactional
 	public Movimentacao salvar(MovimentacaoRequest movimentacaoRequest) {
-		
+		try {
 		var movimentacao = new Movimentacao(movimentacaoRequest.getIdProduto(),movimentacaoRequest.getTipoDeMovimentacao());
 		var movimentacaoSalva = movimentacaoRepository.save(movimentacao);
 		
@@ -29,8 +34,13 @@ public class MovimentacaoService {
 		estoqueRepository.save(estoque);
 		
 		return movimentacaoSalva;
+		}
+		catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(movimentacaoRequest.getIdProduto());
+		}
 	}
 	
+	@Transactional
 	public void updateQuantidadeEstoque(Estoque estoque, TipoDeMovimentacao movimentacao) {
 		estoque.setQuantidade(movimentacao);
 	}

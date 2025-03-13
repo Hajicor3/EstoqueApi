@@ -1,5 +1,7 @@
 package com.hajicor3.EstoqueApi.entities;
 
+import java.io.Serializable;
+
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
@@ -22,7 +24,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @FilterDef(name = "softDeleteFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "softDeleteFilter", condition = "deleted = :isDeleted")
-public class Estoque {
+public class Estoque implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +44,7 @@ public class Estoque {
 	public void setIdProduto(Long idProduto) {
 		
 		if(idProduto <= 0 || idProduto == null) {
-			throw new IllegalArgumentException("O id do produto não pode ser nulo, menor que zero ou igual a zero!");
+			throw new IllegalArgumentException("O id do produto não pode ser nulo e deve ser um id de produto válido!");
 		}
 		
 		this.idProduto = idProduto;
@@ -50,7 +53,7 @@ public class Estoque {
 	public void setIdFornecedor(Long idFornecedor) {
 		
 		if(idFornecedor <= 0 || idFornecedor == null) {
-			throw new IllegalArgumentException("O id do fornecedor não pode ser nulo, menor que zero ou igual a zero!");
+			throw new IllegalArgumentException("O id do fornecedor não pode ser nulo e deve ser um id de fornecedor válido");
 		}
 		
 		this.idFornecedor = idFornecedor;

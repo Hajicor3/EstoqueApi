@@ -16,4 +16,7 @@ public interface EstoqueRepository extends JpaRepository<Estoque, Long>{
 	
 	@Query("SELECT f FROM Estoque f WHERE f.idFornecedor = :idFornecedor AND f.deleted = false")
 	public List<Estoque> findByIdFornecedor(@Param("idFornecedor") Long idFornecedor);
+	
+	@Query("SELECT f FROM Estoque f WHERE f.deleted = false")
+	public List<Estoque> findAll();
 }
