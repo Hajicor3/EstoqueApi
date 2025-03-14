@@ -3,6 +3,6 @@ spring:
     name: apiestoque
   profiles:
     active:
-    - "teste"
+    - "dev"
 server:
   port: 8081
