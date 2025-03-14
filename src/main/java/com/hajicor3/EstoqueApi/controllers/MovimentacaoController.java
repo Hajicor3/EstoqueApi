@@ -48,9 +48,9 @@ public class MovimentacaoController {
 	@Operation(description = "Cancela uma movimentacao já feita, pelo id.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "cancela uma movimentacao."),
-			@ApiResponse(responseCode = "404", description = "Não existe estoque no id do produto informador.")
+			@ApiResponse(responseCode = "404", description = "Não existe movimentacao no id informado.")
 	})
-	@PutMapping
+	@PutMapping(value = "/{id}")
 	public ResponseEntity<Void> cancelarMovimentacaoPorid(@PathVariable Long id){
 		movimentacaoService.cancelarMovimentacao(id);
 		return ResponseEntity.noContent().build();

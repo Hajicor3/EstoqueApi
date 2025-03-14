@@ -52,6 +52,7 @@ public class MovimentacaoService {
 	
 	@Transactional
 	public void cancelarMovimentacao(Long id) {
+		try {
 		var mov = movimentacaoRepository.getReferenceById(id);
 		var estoque = estoqueRepository.findByIdProduto(mov.getIdProduto());
 		
@@ -65,6 +66,10 @@ public class MovimentacaoService {
 		mov.setCancelada(true);
 		estoqueRepository.save(estoque);
 		movimentacaoRepository.save(mov);
+		}
+		catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 	
 	public List<MovimentacaoResponse> resgatarTodas(){
