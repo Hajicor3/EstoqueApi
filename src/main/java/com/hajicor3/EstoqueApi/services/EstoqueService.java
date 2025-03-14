@@ -5,12 +5,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.hajicor3.EstoqueApi.entities.Estoque;
 import com.hajicor3.EstoqueApi.entities.dtos.EstoqueRequest;
 import com.hajicor3.EstoqueApi.entities.dtos.EstoqueResponse;
 import com.hajicor3.EstoqueApi.repositories.EstoqueRepository;
+import com.hajicor3.EstoqueApi.services.exceptions.DataBaseException;
 import com.hajicor3.EstoqueApi.services.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -140,6 +142,9 @@ public class EstoqueService {
 		catch(NullPointerException e) {
 			throw new ResourceNotFoundException(id);
 		}
+		catch(DataIntegrityViolationException e) {
+			throw new DataBaseException(e.getMessage());
+		}
 	}
 	
 	@Transactional
@@ -154,6 +159,9 @@ public class EstoqueService {
 		}
 		catch(NullPointerException e) {
 			throw new ResourceNotFoundException(id);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new DataBaseException(e.getMessage());
 		}
 	}
 }

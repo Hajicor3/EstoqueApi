@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-cv2bb6dsvqrc738tq7pg-a.oregon-postgres.render.com:5432/deploy_produtos_api
+    username: admin
+    password: DyoI6PWoJ6ck6ewWBO00WgJAdymET972
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true

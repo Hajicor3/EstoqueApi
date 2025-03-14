@@ -32,6 +32,7 @@ public class Movimentacao implements Serializable {
 	private Instant data;
 	private Long idProduto;
 	private TipoDeMovimentacao tipoDeMovimentacao;
+	private Boolean cancelada = false;
 	
 	public Movimentacao(Long idProduto, TipoDeMovimentacao tipoDeMovimentacao) {
 		this.data = Instant.now();
@@ -51,4 +52,8 @@ public class Movimentacao implements Serializable {
 		this.tipoDeMovimentacao = tipoDeMovimentacao;
 	}
 	
+	public void setCancelada(Boolean cancelada) {
+		Objects.requireNonNull(cancelada, "O valor não pode ser nulo");
+		this.cancelada = cancelada;
+	}
 }
