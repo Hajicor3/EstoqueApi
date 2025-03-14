@@ -19,4 +19,7 @@ public interface EstoqueRepository extends JpaRepository<Estoque, Long>{
 	
 	@Query("SELECT f FROM Estoque f WHERE f.deleted = false")
 	public List<Estoque> findAll();
+	
+	@Query("SELECT f FROM Estoque f WHERE f.deleted = true")
+	public List<Estoque> findAllDeleted();
 }

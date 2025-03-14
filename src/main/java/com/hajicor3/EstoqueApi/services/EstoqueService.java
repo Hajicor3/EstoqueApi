@@ -47,6 +47,19 @@ public class EstoqueService {
 	}
 	
 	@Transactional
+	public List<EstoqueResponse> buscarTodosDeleteados(){
+		List<EstoqueResponse> lista = estoqueRepository.findAllDeleted().stream().map(x -> EstoqueResponse
+				.builder()
+				.id(x.getId())
+				.idFornecedor(x.getIdFornecedor())
+				.idProduto(x.getIdProduto())
+				.quantidade(x.getQuantidade())
+				.build())
+				.toList();
+		return lista;
+	}
+	
+	@Transactional
 	public EstoqueResponse buscarPorId(Long id) {
 		try {
 		var estoque = estoqueRepository.getReferenceById(id);

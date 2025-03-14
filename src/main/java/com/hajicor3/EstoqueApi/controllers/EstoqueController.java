@@ -48,6 +48,14 @@ public class EstoqueController {
 		return ResponseEntity.ok().body(lista);
 	}
 	
+	@Operation(description = "Retorna uma lista de Dto´s de todos os estoques deletados.")
+	@ApiResponses(value = @ApiResponse(responseCode = "200",description = "Retorna uma lista de todos os estoques."))
+	@GetMapping(value = "/deletados")
+	public ResponseEntity<List<EstoqueResponse>> buscarListaDeEstoquesDeletados(){
+		List<EstoqueResponse> lista = estoqueService.buscarTodosDeleteados();
+		return ResponseEntity.ok().body(lista);
+	}
+	
 	@Operation(description = "Resgata um estoque do banco de dados pelo id.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Retorna um estoque."),

@@ -63,6 +63,14 @@ public class MovimentacaoController {
 		return ResponseEntity.ok().body(movLista);
 	}
 	
+	@Operation(description = "Retorna uma lista de Dto´s de todas as movimentações canceladas.")
+	@ApiResponses(value = @ApiResponse(responseCode = "200",description = "Retorna uma lista de todas as movimentações."))
+	@GetMapping(value = "/canceladas")
+	public ResponseEntity<List<MovimentacaoResponse>> resgatarMovimentacoesCanceladas(){
+		var movLista = movimentacaoService.resgatarTodasCanceladas();
+		return ResponseEntity.ok().body(movLista);
+	}
+	
 	@Operation(description = "Retorna uma lista de Dto´s de todas as movimentações de um produto.")
 	@ApiResponses(value = @ApiResponse(responseCode = "200",description = "Retorna uma lista de todas as movimentações."))
 	@GetMapping(value = "/produto/list/{id}")
