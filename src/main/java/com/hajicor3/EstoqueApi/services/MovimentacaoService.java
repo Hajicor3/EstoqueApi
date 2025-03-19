@@ -30,15 +30,15 @@ public class MovimentacaoService {
 	@Transactional
 	public Movimentacao salvar(MovimentacaoRequest movimentacaoRequest) {
 		try {
-		var movimentacao = new Movimentacao(movimentacaoRequest.getIdProduto(),movimentacaoRequest.getTipoDeMovimentacao());
-		var movimentacaoSalva = movimentacaoRepository.save(movimentacao);
-		
-		var  estoque = estoqueRepository.getReferenceById(movimentacaoSalva.getIdProduto());
-		var tipoDeMovimentacao = movimentacaoSalva.getTipoDeMovimentacao();
-		updateQuantidadeEstoque(estoque, tipoDeMovimentacao);
-		estoqueRepository.save(estoque);
-		
-		return movimentacaoSalva;
+			var movimentacao = new Movimentacao(movimentacaoRequest.getIdProduto(),movimentacaoRequest.getTipoDeMovimentacao());
+			var movimentacaoSalva = movimentacaoRepository.save(movimentacao);
+			
+			var  estoque = estoqueRepository.findByIdProduto(movimentacaoSalva.getIdProduto());
+			var tipoDeMovimentacao = movimentacaoSalva.getTipoDeMovimentacao();
+			updateQuantidadeEstoque(estoque, tipoDeMovimentacao);
+			estoqueRepository.save(estoque);
+			
+			return movimentacaoSalva;
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(movimentacaoRequest.getIdProduto());
@@ -53,19 +53,19 @@ public class MovimentacaoService {
 	@Transactional
 	public void cancelarMovimentacao(Long id) {
 		try {
-		var mov = movimentacaoRepository.getReferenceById(id);
-		var estoque = estoqueRepository.findByIdProduto(mov.getIdProduto());
-		
-		if(mov.getTipoDeMovimentacao() == TipoDeMovimentacao.ENTRADA) {
-			estoque.setQuantidade(TipoDeMovimentacao.SAIDA);
-		}
-		else {
-			estoque.setQuantidade(TipoDeMovimentacao.ENTRADA);
-		}
-		
-		mov.setCancelada(true);
-		estoqueRepository.save(estoque);
-		movimentacaoRepository.save(mov);
+			var mov = movimentacaoRepository.getReferenceById(id);
+			var estoque = estoqueRepository.findByIdProduto(mov.getIdProduto());
+			
+			if(mov.getTipoDeMovimentacao() == TipoDeMovimentacao.ENTRADA) {
+				estoque.setQuantidade(TipoDeMovimentacao.SAIDA);
+			}
+			else {
+				estoque.setQuantidade(TipoDeMovimentacao.ENTRADA);
+			}
+			
+			mov.setCancelada(true);
+			estoqueRepository.save(estoque);
+			movimentacaoRepository.save(mov);
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
@@ -90,14 +90,14 @@ public class MovimentacaoService {
 	@Transactional
 	public List<MovimentacaoResponse> resgatarTodasPorIdProduto(Long id){
 		try {
-		return movimentacaoRepository.findAllByIdProduto(id).stream().map(x -> MovimentacaoResponse
-				.builder()
-				.id(x.getId())
-				.idProduto(x.getIdProduto())
-				.tipoDeMovimentacao(x.getTipoDeMovimentacao())
-				.data(x.getData())
-				.build())
-				.toList();
+			return movimentacaoRepository.findAllByIdProduto(id).stream().map(x -> MovimentacaoResponse
+					.builder()
+					.id(x.getId())
+					.idProduto(x.getIdProduto())
+					.tipoDeMovimentacao(x.getTipoDeMovimentacao())
+					.data(x.getData())
+					.build())
+					.toList();
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
@@ -121,14 +121,14 @@ public class MovimentacaoService {
 	public MovimentacaoResponse buscar(Long id) {
 		
 		try {
-		var mov = movimentacaoRepository.getReferenceById(id);
-		return MovimentacaoResponse
-				.builder()
-				.id(mov.getId())
-				.idProduto(mov.getIdProduto())
-				.tipoDeMovimentacao(mov.getTipoDeMovimentacao())
-				.data(mov.getData())
-				.build();
+			var mov = movimentacaoRepository.getReferenceById(id);
+			return MovimentacaoResponse
+					.builder()
+					.id(mov.getId())
+					.idProduto(mov.getIdProduto())
+					.tipoDeMovimentacao(mov.getTipoDeMovimentacao())
+					.data(mov.getData())
+					.build();
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
@@ -138,14 +138,14 @@ public class MovimentacaoService {
 	@Transactional
 	public MovimentacaoResponse buscarPorIdProduto(Long id) {
 		try {
-		var mov = movimentacaoRepository.findByIdProduto(id);
-		return MovimentacaoResponse
-				.builder()
-				.id(mov.getId())
-				.idProduto(mov.getIdProduto())
-				.tipoDeMovimentacao(mov.getTipoDeMovimentacao())
-				.data(mov.getData())
-				.build();
+			var mov = movimentacaoRepository.findByIdProduto(id);
+			return MovimentacaoResponse
+					.builder()
+					.id(mov.getId())
+					.idProduto(mov.getIdProduto())
+					.tipoDeMovimentacao(mov.getTipoDeMovimentacao())
+					.data(mov.getData())
+					.build();
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
@@ -155,10 +155,10 @@ public class MovimentacaoService {
 	@Transactional
 	public void deletar(Long id){
 		try {
-		if(!movimentacaoRepository.existsById(id)) {
-			throw new ResourceNotFoundException(id);
-		}
-		movimentacaoRepository.deleteById(id);
+			if(!movimentacaoRepository.existsById(id)) {
+				throw new ResourceNotFoundException(id);
+			}
+			movimentacaoRepository.deleteById(id);
 		}
 		catch(DataIntegrityViolationException e) {
 			throw new DataBaseException(e.getMessage());

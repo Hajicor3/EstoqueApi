@@ -10,3 +10,15 @@ spring:
       ddl-auto: update
     generate-ddl: true
     show-sql: true
+
+  rabbitmq:
+    host: jackal.rmq.cloudamqp.com
+    port: 5672
+    username: bpigzlwr
+    password: yj-TmmnOoQJKidOOOmixkxIjYw6P61Yj
+    virtual-host: bpigzlwr
+
+
+mq:
+  queue:
+    produto-estoque-queue: produto-estoque-queue

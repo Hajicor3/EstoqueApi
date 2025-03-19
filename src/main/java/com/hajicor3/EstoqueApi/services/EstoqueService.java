@@ -62,15 +62,15 @@ public class EstoqueService {
 	@Transactional
 	public EstoqueResponse buscarPorId(Long id) {
 		try {
-		var estoque = estoqueRepository.getReferenceById(id);
-		
-		return EstoqueResponse
-				.builder()
-				.id(estoque.getId())
-				.idProduto(estoque.getIdProduto())
-				.idFornecedor(estoque.getIdFornecedor())
-				.quantidade(estoque.getQuantidade())
-				.build();
+			var estoque = estoqueRepository.getReferenceById(id);
+			
+			return EstoqueResponse
+					.builder()
+					.id(estoque.getId())
+					.idProduto(estoque.getIdProduto())
+					.idFornecedor(estoque.getIdFornecedor())
+					.quantidade(estoque.getQuantidade())
+					.build();
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
@@ -83,14 +83,14 @@ public class EstoqueService {
 	@Transactional
 	public EstoqueResponse estoquePorIdProduto(Long id) {
 		try {
-		var estoque = estoqueRepository.findByIdProduto(id);
-		return EstoqueResponse
-				.builder()
-				.id(estoque.getId())
-				.idProduto(estoque.getIdProduto())
-				.idFornecedor(estoque.getIdFornecedor())
-				.quantidade(estoque.getQuantidade())
-				.build();
+			var estoque = estoqueRepository.findByIdProduto(id);
+			return EstoqueResponse
+					.builder()
+					.id(estoque.getId())
+					.idProduto(estoque.getIdProduto())
+					.idFornecedor(estoque.getIdFornecedor())
+					.quantidade(estoque.getQuantidade())
+					.build();
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
@@ -103,15 +103,15 @@ public class EstoqueService {
 	@Transactional
 	public List<EstoqueResponse> estoquesPorIdFornecedor(Long id) {
 		try {
-		var estoque = estoqueRepository.findByIdFornecedor(id);
-		return estoque.stream().map(x -> EstoqueResponse
-				.builder()
-				.id(x.getId())
-				.idFornecedor(x.getIdFornecedor())
-				.idProduto(x.getIdProduto())
-				.quantidade(x.getQuantidade())
-				.build())
-				.toList();
+			var estoque = estoqueRepository.findByIdFornecedor(id);
+			return estoque.stream().map(x -> EstoqueResponse
+					.builder()
+					.id(x.getId())
+					.idFornecedor(x.getIdFornecedor())
+					.idProduto(x.getIdProduto())
+					.quantidade(x.getQuantidade())
+					.build())
+					.toList();
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
@@ -124,7 +124,7 @@ public class EstoqueService {
 	@Transactional
 	public Long estoqueQuantidade(Long id) {
 		try {
-		return estoqueRepository.findByIdProduto(id).getQuantidade();
+			return estoqueRepository.findByIdProduto(id).getQuantidade();
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
@@ -145,9 +145,9 @@ public class EstoqueService {
 	@Transactional
 	public void deletarPorIdProduto(Long id) {
 		try {
-		var estoque = estoqueRepository.findByIdProduto(id);
-		
-		estoqueRepository.delete(estoque);
+			var estoque = estoqueRepository.findByIdProduto(id);
+			
+			estoqueRepository.delete(estoque);
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
@@ -163,9 +163,9 @@ public class EstoqueService {
 	@Transactional
 	public void deletarPorIdFornecedor(Long id) {
 		try {
-		List<Estoque> estoques = estoqueRepository.findByIdFornecedor(id);
-		estoques.forEach(x -> x.setDeleted(true));
-		estoqueRepository.saveAll(estoques);
+			List<Estoque> estoques = estoqueRepository.findByIdFornecedor(id);
+			estoques.forEach(x -> x.setDeleted(true));
+			estoqueRepository.saveAll(estoques);
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
