@@ -30,12 +30,11 @@ public class MovimentacaoService {
 	@Transactional
 	public Movimentacao salvar(MovimentacaoRequest movimentacaoRequest) {
 		try {
-			var movimentacao = new Movimentacao(movimentacaoRequest.getIdProduto(),movimentacaoRequest.getTipoDeMovimentacao());
+			var movimentacao = new Movimentacao(movimentacaoRequest.getIdProduto(), movimentacaoRequest.getQuantidade(),movimentacaoRequest.getTipoDeMovimentacao());
 			var movimentacaoSalva = movimentacaoRepository.save(movimentacao);
 			
 			var  estoque = estoqueRepository.findByIdProduto(movimentacaoSalva.getIdProduto());
-			var tipoDeMovimentacao = movimentacaoSalva.getTipoDeMovimentacao();
-			updateQuantidadeEstoque(estoque, tipoDeMovimentacao);
+			updateQuantidadeEstoque(estoque, movimentacaoSalva);
 			estoqueRepository.save(estoque);
 			
 			return movimentacaoSalva;
@@ -43,11 +42,14 @@ public class MovimentacaoService {
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(movimentacaoRequest.getIdProduto());
 		}
+		catch(NullPointerException e) {
+			throw new ResourceNotFoundException("O estoque o qual a movimentação foi destinada está vazio.");
+		}
 	}
 	
 	@Transactional
-	public void updateQuantidadeEstoque(Estoque estoque, TipoDeMovimentacao movimentacao) {
-		estoque.setQuantidade(movimentacao);
+	public void updateQuantidadeEstoque(Estoque estoque, Movimentacao movimentacao) {
+		estoque.setQuantidade(movimentacao.getTipoDeMovimentacao(), movimentacao.getQuantidade());
 	}
 	
 	@Transactional
@@ -55,12 +57,13 @@ public class MovimentacaoService {
 		try {
 			var mov = movimentacaoRepository.getReferenceById(id);
 			var estoque = estoqueRepository.findByIdProduto(mov.getIdProduto());
+			Long qntd = mov.getQuantidade();
 			
 			if(mov.getTipoDeMovimentacao() == TipoDeMovimentacao.ENTRADA) {
-				estoque.setQuantidade(TipoDeMovimentacao.SAIDA);
+				estoque.setQuantidade(TipoDeMovimentacao.SAIDA, qntd);
 			}
 			else {
-				estoque.setQuantidade(TipoDeMovimentacao.ENTRADA);
+				estoque.setQuantidade(TipoDeMovimentacao.ENTRADA, qntd);
 			}
 			
 			mov.setCancelada(true);
@@ -82,6 +85,7 @@ public class MovimentacaoService {
 				.id(x.getId())
 				.idProduto(x.getIdProduto())
 				.tipoDeMovimentacao(x.getTipoDeMovimentacao())
+				.quantidade(x.getQuantidade())
 				.data(x.getData())
 				.build())
 				.toList();
@@ -95,6 +99,7 @@ public class MovimentacaoService {
 					.id(x.getId())
 					.idProduto(x.getIdProduto())
 					.tipoDeMovimentacao(x.getTipoDeMovimentacao())
+					.quantidade(x.getQuantidade())
 					.data(x.getData())
 					.build())
 					.toList();
@@ -112,6 +117,7 @@ public class MovimentacaoService {
 				.id(x.getId())
 				.idProduto(x.getIdProduto())
 				.tipoDeMovimentacao(x.getTipoDeMovimentacao())
+				.quantidade(x.getQuantidade())
 				.data(x.getData())
 				.build())
 				.toList();
@@ -127,6 +133,7 @@ public class MovimentacaoService {
 					.id(mov.getId())
 					.idProduto(mov.getIdProduto())
 					.tipoDeMovimentacao(mov.getTipoDeMovimentacao())
+					.quantidade(mov.getQuantidade())
 					.data(mov.getData())
 					.build();
 		}
@@ -144,6 +151,7 @@ public class MovimentacaoService {
 					.id(mov.getId())
 					.idProduto(mov.getIdProduto())
 					.tipoDeMovimentacao(mov.getTipoDeMovimentacao())
+					.quantidade(mov.getQuantidade())
 					.data(mov.getData())
 					.build();
 		}

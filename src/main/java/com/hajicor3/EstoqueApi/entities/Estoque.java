@@ -59,18 +59,20 @@ public class Estoque implements Serializable {
 		this.idFornecedor = idFornecedor;
 	}
 	
-	public void setQuantidade(TipoDeMovimentacao movimentacao) {
+	public void setQuantidade(TipoDeMovimentacao movimentacao, Long qntd) {
 		
 		if(movimentacao == TipoDeMovimentacao.ENTRADA) {
-			this.quantidade++;
+			this.quantidade += qntd;
 		}
 		else {
-			if(quantidade == 0) {
-				throw new IllegalArgumentException("A quantidade em estoque não pode ser menor que zero!");
+			if(quantidade < qntd) {
+				throw new IllegalArgumentException("A quantidade de saida é maior que a quantidade em estoque. A quantidade em estoque não pode ser menor que zero!");
 			}
-			this.quantidade--;
+			this.quantidade -= qntd;
 		}
 	}
+	
+	
 	
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;

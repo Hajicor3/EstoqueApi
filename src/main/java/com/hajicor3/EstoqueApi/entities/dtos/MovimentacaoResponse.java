@@ -21,5 +21,6 @@ public class MovimentacaoResponse {
 	@JsonFormat(shape = Shape.STRING, pattern = "dd-MM-yyyy'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant data;
 	private Long idProduto;
+	private Long quantidade;
 	private TipoDeMovimentacao tipoDeMovimentacao;
 }

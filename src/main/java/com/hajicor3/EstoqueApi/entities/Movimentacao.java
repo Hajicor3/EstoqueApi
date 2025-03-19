@@ -32,11 +32,13 @@ public class Movimentacao implements Serializable {
 	private Instant data;
 	private Long idProduto;
 	private TipoDeMovimentacao tipoDeMovimentacao;
+	private Long quantidade;
 	private Boolean cancelada = false;
 	
-	public Movimentacao(Long idProduto, TipoDeMovimentacao tipoDeMovimentacao) {
+	public Movimentacao(Long idProduto, Long quantidade, TipoDeMovimentacao tipoDeMovimentacao) {
 		this.data = Instant.now();
 		setIdProduto(idProduto);
+		setQuantidade(quantidade);
 		setTipoDeMovimentacao(tipoDeMovimentacao);;
 	}
 
@@ -47,6 +49,13 @@ public class Movimentacao implements Serializable {
 		this.idProduto = idProduto;
 	}
 
+	public void setQuantidade(Long quantidade) {
+		if(quantidade == null || quantidade <= 0) {
+			throw new IllegalArgumentException("A quantidade do produto não pode ser nula ou menor que zero!");
+		}
+		this.quantidade = quantidade;
+	}
+	
 	public void setTipoDeMovimentacao(TipoDeMovimentacao tipoDeMovimentacao) {
 		Objects.requireNonNull(tipoDeMovimentacao, "O tipo de movimentação não pode ser nulo!");
 		this.tipoDeMovimentacao = tipoDeMovimentacao;
