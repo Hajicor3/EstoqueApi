@@ -127,7 +127,7 @@ public class MovimentacaoService {
 	public MovimentacaoResponse buscar(Long id) {
 		
 		try {
-			var mov = movimentacaoRepository.getReferenceById(id);
+			var mov = movimentacaoRepository.findByIdNotCancelled(id);
 			return MovimentacaoResponse
 					.builder()
 					.id(mov.getId())

@@ -15,7 +15,7 @@ public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long
 	public List<Movimentacao> findAllByIdProduto(@Param("idPropduto") Long idProduto);
 	
 	@Query("SELECT f FROM Movimentacao f WHERE f.id = :id AND f.cancelada = false")
-	public Movimentacao getReferenceById(Long id);
+	public Movimentacao findByIdNotCancelled(@Param("id")Long id);
 	
 	@Query("SELECT f FROM Movimentacao f WHERE f.cancelada = false")
 	public List<Movimentacao> findAll();
