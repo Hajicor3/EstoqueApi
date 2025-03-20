@@ -19,10 +19,21 @@ spring:
     password: yj-TmmnOoQJKidOOOmixkxIjYw6P61Yj
     virtual-host: bpigzlwr
 
-
 mq:
   queue:
     produto-estoque-queue: produto-estoque-queue
 
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+        exposure:
+          include: 'health,prometheus'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    prometheus:
+      enabled: true
 
 

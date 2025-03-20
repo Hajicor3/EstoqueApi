@@ -79,17 +79,6 @@ public class MovimentacaoController {
 		return ResponseEntity.ok().body(mov);
 	}
 	
-	@Operation(description = "Resgata um produto do banco de dados pelo id.")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Retorna uma movimentação."),
-			@ApiResponse(responseCode = "404", description = "Não existe movimentação no id informado.")
-	})
-	@GetMapping(value = "/produto/{id}")
-	public ResponseEntity<MovimentacaoResponse> buscarMovimentacaoPorIdProduto(@PathVariable Long id){
-		var mov = movimentacaoService.buscarPorIdProduto(id);
-		return ResponseEntity.ok().body(mov);
-	}
-	
 	@Operation(description = "Deleta uma movimentação do banco de dados pelo id.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Efetua a exclusão da movimentação."),
@@ -99,18 +88,6 @@ public class MovimentacaoController {
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deletarMovimentacaoPorId(@PathVariable Long id){
 		movimentacaoService.deletar(id);
-		return ResponseEntity.noContent().build();
-	}
-	
-	@Operation(description = "Deleta uma movimentação do banco de dados pelo id do produto.")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Efetua a exclusão da movimentação."),
-			@ApiResponse(responseCode = "404", description = "Não existe movimentação no id informado."),
-			@ApiResponse(responseCode = "400", description = "Parametros inválidos.")
-	})
-	@DeleteMapping(value = "/produto/{id}")
-	public ResponseEntity<Void> deletarMovimentacaoPorIdProduto(@PathVariable Long id){
-		movimentacaoService.deletarPorIdProduto(id);
 		return ResponseEntity.noContent().build();
 	}
 }
