@@ -140,6 +140,9 @@ public class MovimentacaoService {
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
 		}
+		catch(NullPointerException e) {
+			throw new ResourceNotFoundException("A movimentação não existe.");
+		}
 	}
 	
 	@Transactional
