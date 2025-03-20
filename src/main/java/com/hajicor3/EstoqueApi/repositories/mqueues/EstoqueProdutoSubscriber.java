@@ -20,7 +20,7 @@ public class EstoqueProdutoSubscriber {
 	
 	@RabbitListener(queues = "${mq.queue.produto-estoque-queue}")
 	public void receberSolicitacaoCancelamentoMovimentacao(@Payload String payload) {
-		log.info("Mensagem recebida: {}",payload);
+		log.info("Mensagem recebida com sucesso: {}",payload);
 		try {
 			
 			ObjectMapper mapper = new ObjectMapper();
