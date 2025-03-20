@@ -143,24 +143,6 @@ public class MovimentacaoService {
 	}
 	
 	@Transactional
-	public MovimentacaoResponse buscarPorIdProduto(Long id) {
-		try {
-			var mov = movimentacaoRepository.findByIdProduto(id);
-			return MovimentacaoResponse
-					.builder()
-					.id(mov.getId())
-					.idProduto(mov.getIdProduto())
-					.tipoDeMovimentacao(mov.getTipoDeMovimentacao())
-					.quantidade(mov.getQuantidade())
-					.data(mov.getData())
-					.build();
-		}
-		catch(EntityNotFoundException e) {
-			throw new ResourceNotFoundException(id);
-		}
-	}
-	
-	@Transactional
 	public void deletar(Long id){
 		try {
 			if(!movimentacaoRepository.existsById(id)) {
@@ -170,23 +152,6 @@ public class MovimentacaoService {
 		}
 		catch(DataIntegrityViolationException e) {
 			throw new DataBaseException(e.getMessage());
-		}
-	}
-	
-	@Transactional
-	public void deletarPorIdProduto(Long id){
-		try {
-			var mov = movimentacaoRepository.findCanceladaByIdProduto(id);
-			movimentacaoRepository.delete(mov);
-		}
-		catch(DataIntegrityViolationException e) {
-			throw new DataBaseException(e.getMessage());
-		}
-		catch(EntityNotFoundException e) {
-			throw new ResourceNotFoundException("A movimentação não foi encontrada com o id do produto informado!");
-		}
-		catch(NullPointerException e) {
-			throw new ResourceNotFoundException("A movimentação não foi encontrada com o id do produto informado!");
 		}
 	}
 }
