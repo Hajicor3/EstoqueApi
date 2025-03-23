@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +16,13 @@ import com.hajicor3.EstoqueApi.services.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class EstoqueService {
 
-	@Autowired
-	private EstoqueRepository estoqueRepository;
+	private final EstoqueRepository estoqueRepository;
 	
 	@Transactional
 	public Estoque salvar(EstoqueRequest estoque){

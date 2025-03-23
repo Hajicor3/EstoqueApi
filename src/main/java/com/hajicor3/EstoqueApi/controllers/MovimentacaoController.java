@@ -3,7 +3,6 @@ package com.hajicor3.EstoqueApi.controllers;
 import java.net.URI;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,13 +21,14 @@ import com.hajicor3.EstoqueApi.services.MovimentacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "/movimentacoes")
+@RequiredArgsConstructor
 public class MovimentacaoController {
 	
-	@Autowired
-	private MovimentacaoService movimentacaoService;
+	private final MovimentacaoService movimentacaoService;
 	
 	@Operation(description = "Salva uma movimentação no banco de dados.")
 	@ApiResponses(value = {

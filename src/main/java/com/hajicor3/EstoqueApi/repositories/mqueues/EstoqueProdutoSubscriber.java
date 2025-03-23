@@ -1,7 +1,6 @@
 package com.hajicor3.EstoqueApi.repositories.mqueues;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
@@ -9,14 +8,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hajicor3.EstoqueApi.services.MovimentacaoService;
 import com.hajicor3.EstoqueApi.services.exceptions.ResourceNotFoundException;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class EstoqueProdutoSubscriber {
 	
-	@Autowired
-	private MovimentacaoService movimentacaoService;
+	private final MovimentacaoService movimentacaoService;
 	
 	@RabbitListener(queues = "${mq.queue.produto-estoque-queue}")
 	public void receberSolicitacaoCancelamentoMovimentacao(@Payload String payload) {

@@ -3,7 +3,6 @@ package com.hajicor3.EstoqueApi.controllers;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,13 +21,14 @@ import com.hajicor3.EstoqueApi.services.EstoqueService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "/estoques")
+@RequiredArgsConstructor
 public class EstoqueController {
 	
-	@Autowired
-	private EstoqueService estoqueService;
+	private final EstoqueService estoqueService;
 
 	@Operation(description = "Salva um Estoque no banco de dados.")
 	@ApiResponses(value = {
