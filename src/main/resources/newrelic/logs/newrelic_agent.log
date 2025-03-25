@@ -1,0 +1,65 @@
+2025-03-25T13:28:19,925-0300 [17400 1] com.newrelic INFO: Writing to New Relic log file: E:\Documentos\devProject\projetoNovo\EstoqueApi\src\main\resources\newrelic\logs\newrelic_agent.log
+2025-03-25T13:28:19,925-0300 [17400 1] com.newrelic INFO: JRE vendor Azul Systems, Inc. version 21.0.5
+2025-03-25T13:28:19,925-0300 [17400 1] com.newrelic INFO: JVM vendor Azul Systems, Inc. OpenJDK 64-Bit Server VM version 21.0.5+11-LTS
+2025-03-25T13:28:19,925-0300 [17400 1] com.newrelic INFO: OS Windows 10 version 10.0 arch amd64
+2025-03-25T13:28:19,925-0300 [17400 1] com.newrelic INFO: Agent Host: Gabriel IP: 172.29.48.1
+2025-03-25T13:28:19,926-0300 [17400 1] com.newrelic INFO: New Relic Agent v8.19.0 is initializing...
+2025-03-25T13:28:20,412-0300 [17400 34] com.newrelic INFO: Instrumentation com.newrelic.instrumentation.jdbc-resultset is disabled. Skipping.
+2025-03-25T13:28:21,762-0300 [17400 1] com.newrelic.agent.RPMServiceManagerImpl INFO: Configured to connect to New Relic at collector.newrelic.com:443
+2025-03-25T13:28:21,960-0300 [17400 1] com.newrelic INFO: Setting audit_mode to false
+2025-03-25T13:28:22,075-0300 [17400 1] com.newrelic.agent.config.ConfigServiceImpl INFO: Configuration file is E:\Documentos\devProject\projetoNovo\EstoqueApi\src\main\resources\newrelic\.\newrelic.yml
+2025-03-25T13:28:22,078-0300 [17400 1] com.newrelic INFO: New Relic Agent v8.19.0 has started
+2025-03-25T13:28:22,078-0300 [17400 1] com.newrelic INFO: Agent class loader: com.newrelic.bootstrap.BootstrapAgent$JVMAgentClassLoader@59f95c5d
+2025-03-25T13:28:22,078-0300 [17400 1] com.newrelic INFO: Premain startup complete in 2.867ms
+2025-03-25T13:28:22,079-0300 [17400 1] com.newrelic INFO: New Relic Security is completely disabled by one of the user provided config `security.enabled`, `security.agent.enabled` or `high_security`. Not loading security capabilities.
+2025-03-25T13:28:25,612-0300 [17400 1] com.newrelic INFO: Server Info: Apache Tomcat/10.1.36
+2025-03-25T13:28:32,095-0300 [17400 57] com.newrelic INFO: Host name is Gabriel, display host Gabriel for application EstoqueApi
+2025-03-25T13:28:32,096-0300 [17400 57] com.newrelic INFO: New Relic JFR Monitor is disabled: JFR config has not been enabled in the Java agent.
+2025-03-25T13:28:33,167-0300 [17400 57] com.newrelic INFO: Collector redirection to collector.newrelic.com:443
+2025-03-25T13:28:33,684-0300 [17400 57] com.newrelic INFO: Max payload size is 1.000.000 bytes
+2025-03-25T13:28:33,684-0300 [17400 57] com.newrelic INFO: Agent run id: BeldpZz_17FSAGPz-FHXzLln4toIAAIBAAAnIQEAAEP4AgRR18hJAwAGOC4xOS4wAAdHYWJyaWVsAApFc3RvcXVlQXBp
+2025-03-25T13:28:33,684-0300 [17400 57] com.newrelic INFO: Agent 17400@Gabriel/EstoqueApi connected to collector.newrelic.com:443
+2025-03-25T13:28:33,685-0300 [17400 57] com.newrelic INFO: Reporting to: https://rpm.newrelic.com/accounts/6550520/applications/1373096009
+2025-03-25T13:28:33,686-0300 [17400 57] com.newrelic INFO: Using default collector host: collector.newrelic.com
+2025-03-25T13:28:33,686-0300 [17400 57] com.newrelic INFO: Using default metric ingest URI: https://metric-api.newrelic.com/metric/v1
+2025-03-25T13:28:33,686-0300 [17400 57] com.newrelic INFO: Using default event ingest URI: https://insights-collector.newrelic.com/v1/accounts/events
+2025-03-25T13:28:33,689-0300 [17400 57] com.newrelic INFO: Using default collector host: collector.newrelic.com
+2025-03-25T13:28:33,689-0300 [17400 57] com.newrelic INFO: Using default metric ingest URI: https://metric-api.newrelic.com/metric/v1
+2025-03-25T13:28:33,689-0300 [17400 57] com.newrelic INFO: Using default event ingest URI: https://insights-collector.newrelic.com/v1/accounts/events
+2025-03-25T13:28:35,131-0300 [17400 57] com.newrelic INFO: Real user monitoring is enabled for application EstoqueApi. Auto instrumentation is enabled.
+2025-03-25T13:28:35,131-0300 [17400 57] com.newrelic INFO: New Relic JFR Monitor is disabled: JFR config has not been enabled in the Java agent.
+2025-03-25T13:58:50,518-0300 [17400 31] com.newrelic.agent.core.CoreServiceImpl INFO: JVM is shutting down
+2025-03-25T13:58:50,938-0300 [17400 62] com.newrelic INFO: Transaction com.newrelic.agent.Transaction@2075b938 tried to finish but ServiceManager not started
+2025-03-25T13:58:51,322-0300 [17400 31] com.newrelic.agent.core.CoreServiceImpl INFO: New Relic Agent has shutdown
+2025-03-25T14:09:22,433-0300 [18656 1] com.newrelic INFO: Writing to New Relic log file: E:\Documentos\devProject\projetoNovo\EstoqueApi\src\main\resources\newrelic\logs\newrelic_agent.log
+2025-03-25T14:09:22,433-0300 [18656 1] com.newrelic INFO: JRE vendor Azul Systems, Inc. version 21.0.5
+2025-03-25T14:09:22,433-0300 [18656 1] com.newrelic INFO: JVM vendor Azul Systems, Inc. OpenJDK 64-Bit Server VM version 21.0.5+11-LTS
+2025-03-25T14:09:22,433-0300 [18656 1] com.newrelic INFO: OS Windows 10 version 10.0 arch amd64
+2025-03-25T14:09:22,433-0300 [18656 1] com.newrelic INFO: Agent Host: Gabriel IP: 172.29.48.1
+2025-03-25T14:09:22,434-0300 [18656 1] com.newrelic INFO: New Relic Agent v8.19.0 is initializing...
+2025-03-25T14:09:22,970-0300 [18656 34] com.newrelic INFO: Instrumentation com.newrelic.instrumentation.jdbc-resultset is disabled. Skipping.
+2025-03-25T14:09:23,827-0300 [18656 1] com.newrelic.agent.RPMServiceManagerImpl INFO: Configured to connect to New Relic at collector.newrelic.com:443
+2025-03-25T14:09:24,000-0300 [18656 1] com.newrelic INFO: Setting audit_mode to false
+2025-03-25T14:09:24,117-0300 [18656 1] com.newrelic.agent.config.ConfigServiceImpl INFO: Configuration file is E:\Documentos\devProject\projetoNovo\EstoqueApi\src\main\resources\newrelic\.\newrelic.yml
+2025-03-25T14:09:24,120-0300 [18656 1] com.newrelic INFO: New Relic Agent v8.19.0 has started
+2025-03-25T14:09:24,121-0300 [18656 1] com.newrelic INFO: Agent class loader: com.newrelic.bootstrap.BootstrapAgent$JVMAgentClassLoader@59f95c5d
+2025-03-25T14:09:24,121-0300 [18656 1] com.newrelic INFO: Premain startup complete in 2.431ms
+2025-03-25T14:09:24,122-0300 [18656 1] com.newrelic INFO: New Relic Security is completely disabled by one of the user provided config `security.enabled`, `security.agent.enabled` or `high_security`. Not loading security capabilities.
+2025-03-25T14:09:27,710-0300 [18656 1] com.newrelic INFO: Server Info: Apache Tomcat/10.1.36
+2025-03-25T14:09:34,137-0300 [18656 57] com.newrelic INFO: Host name is Gabriel, display host Gabriel for application EstoqueApi
+2025-03-25T14:09:34,138-0300 [18656 57] com.newrelic INFO: New Relic JFR Monitor is disabled: JFR config has not been enabled in the Java agent.
+2025-03-25T14:09:35,672-0300 [18656 57] com.newrelic INFO: Collector redirection to collector.newrelic.com:443
+2025-03-25T14:09:37,068-0300 [18656 57] com.newrelic INFO: Max payload size is 1.000.000 bytes
+2025-03-25T14:09:37,069-0300 [18656 57] com.newrelic INFO: Agent run id: BdSe2_ShNolnAGPz-FHXzLln4uOkAAIBAAAnIQEAAEjgAgRR18hJAwAGOC4xOS4wAAdHYWJyaWVsAApFc3RvcXVlQXBp
+2025-03-25T14:09:37,069-0300 [18656 57] com.newrelic INFO: Agent 18656@Gabriel/EstoqueApi connected to collector.newrelic.com:443
+2025-03-25T14:09:37,069-0300 [18656 57] com.newrelic INFO: Reporting to: https://rpm.newrelic.com/accounts/6550520/applications/1373096009
+2025-03-25T14:09:37,071-0300 [18656 57] com.newrelic INFO: Using default collector host: collector.newrelic.com
+2025-03-25T14:09:37,071-0300 [18656 57] com.newrelic INFO: Using default metric ingest URI: https://metric-api.newrelic.com/metric/v1
+2025-03-25T14:09:37,071-0300 [18656 57] com.newrelic INFO: Using default event ingest URI: https://insights-collector.newrelic.com/v1/accounts/events
+2025-03-25T14:09:37,075-0300 [18656 57] com.newrelic INFO: Using default collector host: collector.newrelic.com
+2025-03-25T14:09:37,075-0300 [18656 57] com.newrelic INFO: Using default metric ingest URI: https://metric-api.newrelic.com/metric/v1
+2025-03-25T14:09:37,075-0300 [18656 57] com.newrelic INFO: Using default event ingest URI: https://insights-collector.newrelic.com/v1/accounts/events
+2025-03-25T14:09:38,039-0300 [18656 57] com.newrelic INFO: Real user monitoring is enabled for application EstoqueApi. Auto instrumentation is enabled.
+2025-03-25T14:09:38,039-0300 [18656 57] com.newrelic INFO: New Relic JFR Monitor is disabled: JFR config has not been enabled in the Java agent.
+2025-03-25T14:44:23,410-0300 [18656 31] com.newrelic.agent.core.CoreServiceImpl INFO: JVM is shutting down
+2025-03-25T14:44:24,191-0300 [18656 31] com.newrelic.agent.core.CoreServiceImpl INFO: New Relic Agent has shutdown
