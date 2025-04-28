@@ -81,7 +81,7 @@ public class EstoqueController {
 	@Operation(description = "Retorna uma lista de Dto´s de todos os estoques pelo id do fornecedor.")
 	@ApiResponses(value = @ApiResponse(responseCode = "200",description = "Retorna uma lista de todos os estoques."))
 	@GetMapping(path = "/fornecedor/{id}")
-	public ResponseEntity<List<EstoqueResponse>> econtrarEstoquesPorIdFornecedor(@PathVariable Long id){
+	public ResponseEntity<Map<Long,Long>> econtrarEstoquesPorIdFornecedor(@PathVariable Long id){
 		var estoques = estoqueService.estoquesPorIdFornecedor(id);
 		
 		return ResponseEntity.ok().body(estoques);

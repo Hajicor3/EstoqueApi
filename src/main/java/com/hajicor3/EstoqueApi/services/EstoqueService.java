@@ -101,17 +101,13 @@ public class EstoqueService {
 	}
 	
 	@Transactional
-	public List<EstoqueResponse> estoquesPorIdFornecedor(Long id) {
+	public Map<Long, Long> estoquesPorIdFornecedor(Long id) {
 		try {
 			var estoque = estoqueRepository.findByIdFornecedor(id);
-			return estoque.stream().map(x -> EstoqueResponse
-					.builder()
-					.id(x.getId())
-					.idFornecedor(x.getIdFornecedor())
-					.idProduto(x.getIdProduto())
-					.quantidade(x.getQuantidade())
-					.build())
-					.toList();
+			return estoque.stream().collect(Collectors.toMap(
+					x -> x.getIdFornecedor(),
+					x -> x.getQuantidade()));
+			
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
