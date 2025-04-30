@@ -105,7 +105,7 @@ public class EstoqueService {
 		try {
 			var estoque = estoqueRepository.findByIdFornecedor(id);
 			return estoque.stream().collect(Collectors.toMap(
-					x -> x.getIdFornecedor(),
+					x -> x.getIdProduto(),
 					x -> x.getQuantidade()));
 			
 		}
