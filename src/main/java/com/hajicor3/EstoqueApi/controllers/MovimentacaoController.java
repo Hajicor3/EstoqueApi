@@ -37,7 +37,7 @@ public class MovimentacaoController {
 			@ApiResponse(responseCode = "404", description = "O estoque do id não existe.")
 	})
 	@PostMapping
-	public ResponseEntity<Movimentacao> salvarMovimentacao(@RequestBody MovimentacaoRequest movimentacaoRequest) {
+	public ResponseEntity<MovimentacaoResponse> salvarMovimentacao(@RequestBody MovimentacaoRequest movimentacaoRequest) {
 		
 		var movimentacao = movimentacaoService.salvar(movimentacaoRequest);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(movimentacao.getId()).toUri();

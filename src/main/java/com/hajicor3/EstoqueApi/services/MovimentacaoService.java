@@ -27,7 +27,7 @@ public class MovimentacaoService {
 	private final EstoqueRepository estoqueRepository;
 	
 	@Transactional
-	public Movimentacao salvar(MovimentacaoRequest movimentacaoRequest) {
+	public MovimentacaoResponse salvar(MovimentacaoRequest movimentacaoRequest) {
 		try {
 			var movimentacao = new Movimentacao(movimentacaoRequest.getIdProduto(), movimentacaoRequest.getQuantidade(),movimentacaoRequest.getTipoDeMovimentacao());
 			var movimentacaoSalva = movimentacaoRepository.save(movimentacao);
@@ -36,7 +36,14 @@ public class MovimentacaoService {
 			updateQuantidadeEstoque(estoque, movimentacaoSalva);
 			estoqueRepository.save(estoque);
 			
-			return movimentacaoSalva;
+			return MovimentacaoResponse
+					.builder()
+					.data(movimentacaoSalva.getData())
+					.idProduto(movimentacaoSalva.getIdProduto())
+					.id(movimentacaoSalva.getId())
+					.quantidade(movimentacao.getQuantidade())
+					.tipoDeMovimentacao(movimentacaoSalva.getTipoDeMovimentacao())
+					.build();
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(movimentacaoRequest.getIdProduto());
